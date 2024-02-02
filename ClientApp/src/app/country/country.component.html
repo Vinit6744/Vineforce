@@ -1,0 +1,60 @@
+
+<nav class="navbar navbar-light bg-white">
+  <div class="container">
+      <h1>Country</h1>
+      <div class="d-flex">
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="blankField()">Add Country</button>
+            <button type="button" class="btn btn-primary" (click)="nextPage()">Next</button>
+          
+        
+      </div>
+  </div>
+</nav>
+<table class="table mt-3">
+  <thead>
+      <tr>
+          <th scope="col">CountryId</th>
+          <th scope="col">CountryName</th>
+      </tr>
+  </thead>
+  <tbody>
+     <tr *ngFor="let item of countryList">
+          <td>{{item.countryId}}</td>
+          <td>{{item.countryName}}</td>       
+          <td>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"class="btn btn-info" (click)="editCountry(item)">Edit</button>
+              <button class="btn btn-danger mx-3" (click)="deleteData(item.countryId)">Delete</button>
+          </td> 
+      </tr>
+  </tbody>
+</table>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Country Deatils</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+      <form countryfrom="ngForm">
+          <div class="mb-3">
+              <label class="label">Country</label>
+              <input type="text" class="form-control"  placeholder="Enter Name" name="countryName" [(ngModel)]="country.countryName" 
+              #countryName="ngModel" >  
+          </div>
+       
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary"  (click)="addUpdate(country)" data-bs-dismiss="modal">AddUpdate</button>
+  
+      </div>
+      
+    </div>
+   
+  </div>
+</div>   

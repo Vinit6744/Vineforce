@@ -1,0 +1,68 @@
+
+<nav class="navbar navbar-light bg-white">
+    <div class="container">
+        <h1>State</h1>
+        <div class="d-flex">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="blankField()">Add State</button>
+            <button type="button" class="btn btn-primary" (click)="backPage()">Back</button>
+
+        </div>
+    </div>
+  </nav>
+  <table class="table mt-3">
+    <thead>
+        <tr>
+            <th scope="col">StateId</th>
+            <th scope="col">CountryName</th>
+            <th scope="col">StateName</th>
+        </tr>
+    </thead>
+    <tbody>
+       <tr *ngFor="let item of StateList">
+            <td>{{item.stateId}}</td>
+            <td>{{item.countryName}}</td>
+            <td>{{item.stateName}}</td>       
+            <td>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"class="btn btn-info" (click)="editState(item)">Edit</button>
+                <button class="btn btn-danger mx-3" (click)="deleteData(item.stateId)">Delete</button>
+            </td> 
+        </tr>
+    </tbody>
+  </table>
+  
+  
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">State Deatils</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"  (click)="closePopup()"></button>
+        </div>
+        <div class="modal-body">
+        <form statefrom="ngForm">
+
+            <select class="form-select" aria-label="Default select example" name="countryId" [(ngModel)]="state.countryId" >
+                <option  [value]="item.countryId" *ngFor="let item of countryList">{{item.countryName}}</option>
+              </select>
+
+            <div class="mb-3">
+                <label class="label">State</label>
+                <input type="text" class="form-control"  placeholder="Enter Name stateName" name="stateName" [(ngModel)]="state.stateName" 
+                #stateName="ngModel" >  
+            </div>
+
+           
+
+        </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="addUpdateState(state)" data-bs-dismiss="modal">AddUpdate</button>
+    
+        </div>
+      </div>
+  
+      
+    </div>
+  </div>   
+  
